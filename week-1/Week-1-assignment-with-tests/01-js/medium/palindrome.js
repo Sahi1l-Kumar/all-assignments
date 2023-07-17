@@ -6,8 +6,32 @@
   - `npm run test-palindrome`
 */
 
+function removeSpaceAndPunc(str) {
+  let temp = "";
+  for (let i = 0; i < str.length; i++) {
+    if (
+      str.charAt(i) == " " ||
+      str.charAt(i) == "," ||
+      str.charAt(i) == "." ||
+      str.charAt(i) == "?" ||
+      str.charAt(i) == "!"
+    ) {
+      continue;
+    } else {
+      temp += str.charAt(i);
+    }
+  }
+  return temp;
+}
+
 function isPalindrome(str) {
-  return true;
+  str = str.toLowerCase();
+  str = removeSpaceAndPunc(str);
+  if (str.split("").reverse().join("") == str) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 module.exports = isPalindrome;
