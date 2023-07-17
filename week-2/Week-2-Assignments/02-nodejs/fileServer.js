@@ -16,10 +16,35 @@
 
     Testing the server - run `npm run test-fileServer` command in terminal
  */
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
 const app = express();
 
+app.get("/files", (req, res) => {
+  fs.readdir("./files/", (err, files) => {
+    if (err) {
+      res.status(500).send();
+    }
+    res.json(files);
+  });
+});
+
+app.get("/file/:filename", (req, res) => {
+  const filename = req.params.filename;
+  fs.readFile("./files/" + filename, (err, data) => {
+    if (err) {
+      res.status(404).send("File not found");
+    }
+    res.send(data);
+  });
+});
+
+// for all invalid routes
+app.use((req, res, next) => {
+  res.status(404).send("Route not found");
+});
+
+// app.listen(3000);
 
 module.exports = app;
