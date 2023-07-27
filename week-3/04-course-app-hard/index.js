@@ -66,7 +66,7 @@ const authenticateUserJwt = (req, res, next) => {
 };
 
 mongoose.connect(
-  "mongodb+srv://Sahil:try@cluster0.1uvnksv.mongodb.net/Course-Selling-App",
+  "Insert your database url here",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
